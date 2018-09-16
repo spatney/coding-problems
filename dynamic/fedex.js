@@ -30,7 +30,13 @@ function computeMaxValueInternal(goods, i, weightRemaining, valueTotal, map) {
         valueTotal + goods[i].value,
         map);
 
-    if (leftSubTree.value > rightSubTree.value) {
+    /*if (leftSubTree.value === rightSubTree.value) {
+        if (leftSubTree.items.length > rightSubTree.items.length) {
+            result = leftSubTree;
+        } else {
+            result = rightSubTree;
+        }
+    } else */if (leftSubTree.value > rightSubTree.value) {
         result = leftSubTree;
     }
     else {
@@ -47,14 +53,17 @@ const goods = [
     { value: 5, weight: 3 },
     { value: 1, weight: 1 },
     { value: 2, weight: 9 },
-    { value: 3, weight: 3 },
-    { value: 1, weight: 2 },
+    { value: 1, weight: 1 },
+    { value: 2, weight: 2 },
 ];
 const weightAllowed = process.argv.length > 1 ? process.argv[2] : 10;
+
+console.log("Weight allowed: \033[1;33;44m " + weightAllowed +  ' \033[0m');
+
 const result = computeMaxValue(goods, weightAllowed);
 
 console.log(
-    'Max value of the load is \033[1;33;44m ' 
-    + result.value 
+    'Max value of the load is \033[1;33;44m '
+    + result.value
     + ' \033[0m, and the item(s) included are '
-    +'\033[1;33;44m [ ' + result.items +' ] \033[0m');
+    + '\033[1;33;44m [ ' + result.items + ' ] \033[0m');

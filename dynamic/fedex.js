@@ -54,7 +54,7 @@ const weightAllowed = process.argv.length > 1 ? process.argv[2] : 10;
 const result = computeMaxValue(goods, weightAllowed);
 
 console.log(
-    'Max value of the load is \033[1m' 
+    'Max value of the load is \033[1;33;44m ' 
     + result.value 
-    + '\033[0m, and the item(s) included are '
-    +'\033[1m[ ' + result.items +' ]\033[0m');
+    + ' \033[0m, and the item(s) included are '
+    +'\033[1;33;44m [ ' + result.items +' ] \033[0m');

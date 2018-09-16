@@ -1,3 +1,5 @@
+const utils = require('./listUtils');
+
 function detectAndBreakCircularList(head) {
     let slow = head;
     let fast = head;
@@ -14,28 +16,21 @@ function detectAndBreakCircularList(head) {
             }
             console.log("List Loop Point " + fast.next.value);
             fast.next = null;
-            printList(head);
+            utils.printList(head);
             return true;
         }
     }
 
     console.log("List Mid Point " + slow.value);
-    printList(head);
+    utils.printList(head);
     return false;
 }
 
-function createNode(value) {
-    return {
-        next: null,
-        value: value
-    };
-}
-
 function generateList(loop) {
-    let head = first = createNode(0);
+    let head = first = utils.createNode(0);
 
     for (let i = 1; i <= 10; i++) {
-        head.next = createNode(i);
+        head.next = utils.createNode(i);
         head = head.next;
     }
 
@@ -44,16 +39,6 @@ function generateList(loop) {
     }
 
     return first;
-}
-
-function printList(head) {
-    let log = `HEAD -> ${head.value}`
-    while (head.next) {
-        head = head.next;
-        log += ` -> ${head.value}`
-    }
-
-    console.log(`${log} -> NULL`);
 }
 
 console.log(detectAndBreakCircularList(generateList(true)));

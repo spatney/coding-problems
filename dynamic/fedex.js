@@ -12,7 +12,8 @@ function computeMaxValue(goods, weightAllowed) {
 }
 
 function computeMaxValueInternal(goods, i, weightLeft, valueTotal, map) {
-    let result = map[`${i}-${weightLeft}-${valueTotal}`];
+    const key = `${i}-${weightLeft}-${valueTotal}`;
+    let result = map[key];
 
     if (result !== undefined) return result;
     if (i < 0) return { value: valueTotal, items: [] };
@@ -26,7 +27,7 @@ function computeMaxValueInternal(goods, i, weightLeft, valueTotal, map) {
         map);
 
     if ((weightLeft - goods[i].weight) < 0) {
-        map[`${i}-${weightLeft}-${valueTotal}`] = leftSubTree;
+        map[key] = leftSubTree;
         return leftSubTree;
     }
 
@@ -45,7 +46,7 @@ function computeMaxValueInternal(goods, i, weightLeft, valueTotal, map) {
         result = rightSubTree;
     }
 
-    map[`${i}-${weightLeft}-${valueTotal}`] = result;
+    map[key] = result;
 
     return result;
 }

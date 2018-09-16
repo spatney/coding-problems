@@ -50,4 +50,4 @@ function computeMaxValueInternal(goods, i, weightLeft, valueTotal, map) {
     return result;
 }
 
-console.log(computeMaxValue(goods, process.argv[2]));
+console.log(computeMaxValue(goods, process.argv.length > 1 ? process.argv[2] : 10));

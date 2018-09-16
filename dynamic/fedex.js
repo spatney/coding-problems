@@ -1,11 +1,3 @@
-let goods = [
-    { value: 5, weight: 3 },
-    { value: 1, weight: 1 },
-    { value: 2, weight: 9 },
-    { value: 3, weight: 3 },
-    { value: 1, weight: 2 },
-];
-
 function computeMaxValue(goods, weightAllowed) {
     const result = computeMaxValueInternal(goods, goods.length - 1, weightAllowed, 0, {});
     return result;
@@ -51,4 +43,18 @@ function computeMaxValueInternal(goods, i, weightRemaining, valueTotal, map) {
     return result;
 }
 
-console.log(computeMaxValue(goods, process.argv.length > 1 ? process.argv[2] : 10));
+const goods = [
+    { value: 5, weight: 3 },
+    { value: 1, weight: 1 },
+    { value: 2, weight: 9 },
+    { value: 3, weight: 3 },
+    { value: 1, weight: 2 },
+];
+const weightAllowed = process.argv.length > 1 ? process.argv[2] : 10;
+const result = computeMaxValue(goods, weightAllowed);
+
+console.log(
+    'Max value of the load is \033[1m' 
+    + result.value 
+    + '\033[0m, and the item(s) included are '
+    +'\033[1m[ ' + result.items +' ]\033[0m');

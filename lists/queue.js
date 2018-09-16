@@ -12,7 +12,7 @@ class Queue {
         }
         else {
             let current = this.head;
-            
+
             while (current.next) {
                 current = current.next
             }
@@ -22,7 +22,7 @@ class Queue {
     }
 
     dequeue() {
-        if(this.head) {
+        if (this.head) {
             let value = this.head.value;
             this.head = this.head.next;
             return value;
@@ -34,10 +34,10 @@ class Queue {
 
 let queue = new Queue();
 
-for(let i=0; i<10; i++) {
+for (let i = 0; i < 10; i++) {
     queue.enqueue(i);
 }
 
-while((value = queue.dequeue()) != null) {
+while ((value = queue.dequeue()) != null) {
     console.log(value);
 }

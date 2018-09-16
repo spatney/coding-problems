@@ -14,7 +14,7 @@ class Stack {
     }
 
     pop() {
-        if(this.head) {
+        if (this.head) {
             const value = this.head.value;
             this.head = this.head.next;
             return value;
@@ -27,10 +27,10 @@ class Stack {
 
 let stack = new Stack();
 
-for(let i=0; i<10; i++) {
+for (let i = 0; i < 10; i++) {
     stack.push(i);
 }
 
-while((value = stack.pop()) != null) {
+while ((value = stack.pop()) != null) {
     console.log(value);
 }

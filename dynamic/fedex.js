@@ -19,10 +19,10 @@ function computeMaxValueInternal(goods, i, weightLeft, valueTotal, map) {
     if (weightLeft <= 0) return { value: valueTotal, items: [] };
 
     const computedResult1 = computeMaxValueInternal(
-        goods, 
-        i - 1, 
-        weightLeft, 
-        valueTotal, 
+        goods,
+        i - 1,
+        weightLeft,
+        valueTotal,
         map);
 
     if ((weightLeft - goods[i].weight) < 0) {
@@ -31,10 +31,10 @@ function computeMaxValueInternal(goods, i, weightLeft, valueTotal, map) {
     }
 
     const computedResult2 = computeMaxValueInternal(
-        goods, 
-        i - 1, 
-        weightLeft - goods[i].weight, 
-        valueTotal + goods[i].value, 
+        goods,
+        i - 1,
+        weightLeft - goods[i].weight,
+        valueTotal + goods[i].value,
         map);
 
     if (computedResult1.value > computedResult2.value) {

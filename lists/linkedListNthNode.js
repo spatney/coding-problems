@@ -9,12 +9,12 @@ function findNthNode(l, n) {
     let fast = head;
     let slow = head;
 
-    for(let i=0; i<n; i++) {
+    for (let i = 0; i < n; i++) {
         fast = fast.next;
-        if(!fast) { return false; }
+        if (!fast) { return false; }
     }
 
-    while(fast.next) {
+    while (fast.next) {
         slow = slow.next;
         fast = fast.next;
     }
@@ -22,4 +22,4 @@ function findNthNode(l, n) {
     console.log("Nth from back: " + slow.value);
 }
 
-findNthNode(10,0);
+findNthNode(10, 0);

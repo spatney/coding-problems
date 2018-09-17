@@ -10,6 +10,17 @@ function generateGoods(num) {
     return arr;
 }
 
+function to2D(goods) {
+    arr = [[],[]];
+
+    for(const good of goods) {
+        arr[0].push(good.value);
+        arr[1].push(good.weight);
+    }
+
+    return arr;
+}
+
 function computeMaxValue(goods, weightAllowed) {
     const map = {};
     const result = computeMaxValueInternal(goods, goods.length - 1, weightAllowed, 0, map);
@@ -63,12 +74,12 @@ function computeMaxValueInternal(goods, i, capacityRemaining, valueTotal, map) {
 }
 
 const goods = [
-    { value: 5, weight: 3 }, // 0
-    { value: 1, weight: 1 }, // 1
-    { value: 2, weight: 2 }, // 2
-    { value: 2, weight: 9 }, // 3
-    { value: 1, weight: 1 }, // 4
-    { value: 1, weight: 1 }, // 5
+    { value: 50, weight: 3 }, // 0
+    { value: 10, weight: 1 }, // 1
+    { value: 20, weight: 2 }, // 2
+    { value: 20, weight: 9 }, // 3
+    { value: 10, weight: 1 }, // 4
+    { value: 10, weight: 1 }, // 5
 ];
 
 const weightAllowed = process.argv.length > 1 ? process.argv[2] : 10;

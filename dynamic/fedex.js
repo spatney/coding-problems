@@ -1,15 +1,13 @@
-function print(items, goods) {
-    let str = '';
-    let count = 0;
-    for (const k in items) {
-        if (items[k] === 1) {
-            str += `${k},`
-            count += goods[parseInt(k)].weight;
-        }
+function generateGoods(num) {
+    const arr = [];
+    for(let i = 0; i < num; i++) {
+        arr.push({
+            value: Math.random() * 100 | 0 + 1,
+            weight: Math.random() * 10 | 0 + 1 
+        })
     }
 
-    console.log(count);
-    return str.substr(0, str.length - 1);
+    return arr;
 }
 
 function computeMaxValue(goods, weightAllowed) {
@@ -25,7 +23,7 @@ function computeMaxValueInternal(goods, i, capacityRemaining, valueTotal, map) {
     if (result) return result;
     if (i < 0 || capacityRemaining <= 0) return {
         value: valueTotal,
-        items: {}
+        items: []
     };
 
     const leftSubTree = computeMaxValueInternal(
@@ -36,9 +34,9 @@ function computeMaxValueInternal(goods, i, capacityRemaining, valueTotal, map) {
         map);
 
     if (goods[i].weight > capacityRemaining) {
-        leftSubTree.items[i] = 0;
-        map[key] = leftSubTree;
-        return leftSubTree;
+        result = leftSubTree;
+        map[key] = result;
+        return result;
     }
 
     const rightSubTree = computeMaxValueInternal(
@@ -50,14 +48,17 @@ function computeMaxValueInternal(goods, i, capacityRemaining, valueTotal, map) {
 
     if (leftSubTree.value > rightSubTree.value) {
         result = leftSubTree;
-        result.items[i] = 0;
-        map[key] = result; // not the most efficient.
     }
     else {
-        result = rightSubTree;
-        result.items[i] = 1;
+        result = {
+            value: rightSubTree.value,
+            items: rightSubTree.items.slice()
+        }
+        result.items.push(i);
     }
 
+    map[key] = result;
+    
     return result;
 }
 
@@ -72,11 +73,12 @@ const goods = [
 
 const weightAllowed = process.argv.length > 1 ? process.argv[2] : 10;
 
-console.log("Weight allowed: \033[1;33;44m " + weightAllowed + ' \033[0m');
+console.log("Max weight allowed: \033[1;33;44m " + weightAllowed + 'kg \033[0m');
 
 const result = computeMaxValue(goods, weightAllowed);
+
 console.log(
-    'Max value of the load is \033[1;33;44m '
+    'Max value possible is \033[1;33;44m $'
     + result.value
     + ' \033[0m, and the item(s) included are '
-    + '\033[1;33;44m [ ' + print(result.items, goods) + ' ] \033[0m');
+    + '\033[1;33;44m [ ' + result.items + ' ] \033[0m');

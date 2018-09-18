@@ -4,7 +4,7 @@ function countSubsets(numbers, sum) {
 
 function countSubsetsInternal(numbers, sum, i) {
     if (sum === 0) return 1;
-    if (i < 0) return 0;
+    if (sum < 0 || i < 0) return 0;
 
     const result = countSubsetsInternal(numbers, sum, i - 1) +
         countSubsetsInternal(numbers, sum - numbers[i], i - 1);

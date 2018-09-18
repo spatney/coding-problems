@@ -12,6 +12,6 @@ function countSubsetsInternal(numbers, sum, i) {
     return result;
 }
 
-const numbers = [1, 2, -3, -4];
+const numbers = [1, 2, 3, 4];
 
 console.log(countSubsets(numbers, parseInt(process.argv[2])));
